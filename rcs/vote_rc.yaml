@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: vote
+  namespace: dev
+  labels:
+    role: rc
+    tier: front
+spec:
+  replicas: 2
+  selector:
+    app: vote
+    role: ui
+  template:
+    metadata:
+      labels:
+        app: vote
+        role: ui
+        tier: front
+    spec:
+      containers:
+      - image: schoolofdevops/vote
+        imagePullPolicy: Always
+        name: vote
+        ports:
+        - containerPort: 80
+          protocol: TCP
