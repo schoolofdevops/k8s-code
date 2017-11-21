@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: vote-dep
+  name: vote
   namespace: dev
 spec:
   replicas: 3
@@ -27,4 +27,3 @@ spec:
         - containerPort: 80
           protocol: TCP
       restartPolicy: Always
-

@@ -5,7 +5,7 @@ metadata:
   labels:
     role: svc
     tier: front
-  name: vote-svc
+  name: vote
   namespace: dev
 spec:
   selector:
