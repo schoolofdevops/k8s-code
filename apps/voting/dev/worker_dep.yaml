@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: xxxx
+metadata:
+  name: xxxx
+  namespace: xxx
+spec:
+  replicas: xxx
+  selector:
+    xxxx [add selectors here]
+  minReadySeconds: 20
+  template:
+    xxxx [add pod template here]

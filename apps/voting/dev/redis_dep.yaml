@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: redis
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: back
+      app: xxxx
+    matchExpressions:
+      - {key: tier, operator: In, values: [back]}
+  minReadySeconds: 20
+  template:
+    metadata:
+      labels:
+        app: xxxx
+        role: xxxx
+        tier: back
+    spec:
+      containers:
+      - image: xxxx
+        imagePullPolicy: Always
+        name: xxxx
+        ports:
+        - containerPort: xxxx
+          protocol: TCP
+      restartPolicy: Always

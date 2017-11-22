@@ -1,0 +1,8 @@
+screen watch -n 1 kubectl get pods
+split
+focus down
+screen watch -n 1 kubectl get hpa
+split
+focus down
+screen watch -n 1 kubectl get deploy
+focus bottom

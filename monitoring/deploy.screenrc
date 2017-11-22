@@ -1,0 +1,11 @@
+screen watch -n 1 kubectl get pods
+split
+focus down
+screen watch -n 1 kubectl get deploy
+split
+focus down
+screen watch -n 1 kubectl get services
+split
+focus down
+screen watch -n 1 kubectl get replicasets
+focus bottom
