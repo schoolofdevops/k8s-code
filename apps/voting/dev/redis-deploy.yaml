@@ -8,22 +8,20 @@ spec:
   selector:
     matchLabels:
       tier: back
-      app: xxxx
-    matchExpressions:
-      - {key: tier, operator: In, values: [back]}
-  minReadySeconds: 20
+      app: redis
+  minReadySeconds: 10
   template:
     metadata:
       labels:
-        app: xxxx
-        role: xxxx
+        app: redis
+        role: redis
         tier: back
     spec:
       containers:
-      - image: xxxx
+      - image: schoolofdevops/redis:latest
         imagePullPolicy: Always
-        name: xxxx
+        name: redis
         ports:
-        - containerPort: xxxx
+        - containerPort: 6379
           protocol: TCP
       restartPolicy: Always
