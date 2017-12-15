@@ -4,14 +4,21 @@ metadata:
   name: vote
   namespace: dev
 spec:
-  replicas: 3
+  replicas: 8
   selector:
     matchLabels:
       tier: front
       app: vote
     matchExpressions:
       - {key: tier, operator: In, values: [front]}
+  revisionHistoryLimit: 4
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 2
   minReadySeconds: 20
+  paused: false
   template:
     metadata:
       labels:
@@ -26,4 +33,3 @@ spec:
         ports:
         - containerPort: 80
           protocol: TCP
-      restartPolicy: Always
