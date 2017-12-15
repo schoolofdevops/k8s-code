@@ -9,17 +9,17 @@ metadata:
 spec:
   containers:
     - name: nginx
-      image: nginx
+      image: schoolofdevops/nginx-synch
       ports:
         - containerPort: 80
       volumeMounts:
       - name: data
-        mountPath: /opt/d1
-    - name: loop
-      image: schoolofdevops/loop
+        mountPath: /var/www/html-sample-app
+    - name: synch
+      image: schoolofdevops/synch
       volumeMounts:
       - name: data
-        mountPath: /opt/d1
+        mountPath: /var/www/html-sample-app
   volumes:
   - name: data
     emptyDir: {}
