@@ -23,9 +23,6 @@ spec:
       - image: schoolofdevops/vote
         imagePullPolicy: Always
         name: vote
-        envFrom:
-          - configMapRef:
-              name: vote
         ports:
         - containerPort: 80
           protocol: TCP
