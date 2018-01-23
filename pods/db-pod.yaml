@@ -19,4 +19,4 @@ spec:
   - name: db-data
     hostPath:
       path: /pgdata
-    type: DirectoryOrCreate
+      type: DirectoryOrCreate
