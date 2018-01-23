@@ -9,7 +9,7 @@ metadata:
 spec:
   containers:
     - name: nginx
-      image: schoolofdevops/nginx-synch
+      image: nginx:stable-alpine
       ports:
         - containerPort: 80
       volumeMounts:
