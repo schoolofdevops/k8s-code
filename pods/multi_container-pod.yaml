@@ -15,7 +15,7 @@ spec:
       volumeMounts:
       - name: data
         mountPath: /var/www/html-sample-app
-    - name: synch
+    - name: sync
       image: schoolofdevops/synch
       volumeMounts:
       - name: data
