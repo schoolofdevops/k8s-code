@@ -2,9 +2,9 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: vote
-  namespace: dev
+  namespace: instavote
 spec:
-  replicas: 8
+  replicas: 2
   selector:
     matchLabels:
       tier: front

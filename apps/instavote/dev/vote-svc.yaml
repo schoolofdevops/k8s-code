@@ -6,7 +6,7 @@ metadata:
     role: svc
     tier: front
   name: vote
-  namespace: dev
+  namespace: instavote
 spec:
   selector:
     app: vote
