@@ -10,4 +10,3 @@ spec:
   containers:
     - name: vote
       image: schoolofdevops/vote:latest
-
