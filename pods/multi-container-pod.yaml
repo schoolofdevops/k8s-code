@@ -9,13 +9,13 @@ metadata:
 spec:
   containers:
     - name: nginx
-      image: schoolofdevops/nginx-synch
+      image: nginx:stable-alpine
       ports:
         - containerPort: 80
       volumeMounts:
       - name: data
         mountPath: /var/www/html-sample-app
-    - name: synch
+    - name: sync
       image: schoolofdevops/synch
       volumeMounts:
       - name: data

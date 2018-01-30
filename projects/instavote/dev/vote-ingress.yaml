@@ -3,7 +3,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: vote
-  namespace: dev
+  namespace: instavote
   annotations:
     kubernetes.io/ingress.class: traefik
 spec:

@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: redis
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        application: redis
+        version: 3.2.5
+    spec:
+      containers:
+      - name: redis
+        image: redis:3.2.5
+        volumeMounts:
+        - mountPath: /data
+          name: redis-data
+      volumes:
+        - name: redis-data
+          persistentVolumeClaim:
+            claimName: redis-data
