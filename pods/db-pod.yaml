@@ -18,5 +18,5 @@ spec:
   volumes:
   - name: db-data
     hostPath:
-      path: /pgdata
+      path: /var/lib/pgdata
       type: DirectoryOrCreate
