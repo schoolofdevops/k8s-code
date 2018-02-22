@@ -1,5 +1,5 @@
-apiVersion: apps/v1beta1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
   name: catalogue
   namespace: mogambo
@@ -7,10 +7,6 @@ metadata:
     app: catalogue
     env: dev
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: catalogue
   template:
     metadata:
       labels:
@@ -24,7 +20,7 @@ spec:
           effect: "NoExecute"
       containers:
         - name: catalogue
-          image: schoolofdevops/catalogue:v2
+          image: schoolofdevops/catalogue
           imagePullPolicy: Always
           ports:
             - containerPort: 80

@@ -2,7 +2,7 @@ apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   name: frontend-autoscaler
-  namespace: instavote
+  namespace: mogambo
 spec:
   scaleTargetRef:
     apiVersion: apps/v1beta1

@@ -4,7 +4,7 @@ metadata:
   name: front-end
   namespace: mogambo
 spec:
-  replicas: 8
+  replicas: 3
   revisionHistoryLimit: 4
   strategy:
     type: RollingUpdate
@@ -21,9 +21,17 @@ spec:
         tier: front
     spec:
       containers:
-      - image: schoolofdevops/frontend
+      - image: schoolofdevops/frontend:latest
         imagePullPolicy: Always
         name: front-end
         ports:
-        - containerPort: 80
+        - containerPort: 8079
           protocol: TCP
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+

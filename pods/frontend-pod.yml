@@ -7,6 +7,18 @@ metadata:
     role: ui
     tier: front
 spec:
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app
+              operator: In
+              values:
+              - frontend
+          topologyKey: kubernetes.io/hostname
   containers:
     - name: front-end
       image: schoolofdevops/frontend:latest

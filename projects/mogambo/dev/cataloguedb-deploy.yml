@@ -2,7 +2,7 @@ apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: catalogue-db
-  namespace: instavote
+  namespace: mogambo
   labels:
     app: catalogue-db
     env: dev
