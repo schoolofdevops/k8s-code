@@ -24,4 +24,16 @@ spec:
         ports:
         - containerPort: 5432
           protocol: TCP
+# Secret definition
+        env:
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: db
+                key: POSTGRES_USER
+          - name: POSTGRES_PASSWD
+            valueFrom:
+              secretKeyRef:
+                name: db
+                key: POSTGRES_PASSWD
       restartPolicy: Always

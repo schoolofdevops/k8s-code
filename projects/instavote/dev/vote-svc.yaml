@@ -15,3 +15,6 @@ spec:
     protocol: TCP
     targetPort: 80
   type: NodePort
+  externalIPs:
+    - 10.40.1.26
+    - 10.40.1.25

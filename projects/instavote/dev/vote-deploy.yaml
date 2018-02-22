@@ -27,7 +27,7 @@ spec:
         tier: front
     spec:
       containers:
-      - image: schoolofdevops/vote
+      - image: schoolofdevops/vote:movies
         imagePullPolicy: Always
         name: vote
         ports:
