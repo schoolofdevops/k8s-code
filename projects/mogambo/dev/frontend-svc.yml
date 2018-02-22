@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    role: svc
+    tier: front
+  name: front-end
+  namespace: mogambo
+spec:
+  selector:
+    app: front-end
+  ports:
+  - port: 8079
+    protocol: TCP
+    targetPort: 8079
+  type: NodePort

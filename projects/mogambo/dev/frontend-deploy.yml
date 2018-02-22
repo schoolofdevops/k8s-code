@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: front-end
+  namespace: mogambo
+spec:
+  replicas: 8
+  revisionHistoryLimit: 4
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 2
+  minReadySeconds: 20
+  paused: false
+  template:
+    metadata:
+      labels:
+        app: front-end
+        role: ui
+        tier: front
+    spec:
+      containers:
+      - image: schoolofdevops/frontend
+        imagePullPolicy: Always
+        name: front-end
+        ports:
+        - containerPort: 80
+          protocol: TCP

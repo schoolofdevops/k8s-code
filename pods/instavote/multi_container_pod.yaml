@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web
+  labels:
+    app: nginx
+    role: ui
+    tier: front
+spec:
+  containers:
+    - name: nginx
+      image: nginx:stable-alpine
+      ports:
+        - containerPort: 80
+      volumeMounts:
+      - name: data
+        mountPath: /var/www/html-sample-app
+    - name: sync
+      image: schoolofdevops/synch
+      volumeMounts:
+      - name: data
+        mountPath: /var/www/html-sample-app
+  volumes:
+  - name: data
+    emptyDir: {}
