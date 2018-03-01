@@ -23,3 +23,10 @@ spec:
           envFrom:
             - configMapRef:
                 name: catalogue-db
+          volumeMounts:
+            - name: nfs-pvc
+              mountPath: "/mnt"
+      volumes:
+        - name: nfs-pvc
+          persistentVolumeClaim:
+            claimName: cataloguedb-claim
