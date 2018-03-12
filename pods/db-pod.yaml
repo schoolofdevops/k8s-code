@@ -12,11 +12,3 @@ spec:
       image: postgres:9.4
       ports:
         - containerPort: 5432
-      volumeMounts:
-      - name: db-data
-        mountPath: /var/lib/postgresql/data
-  volumes:
-  - name: db-data
-    hostPath:
-      path: /var/lib/pgdata
-      type: DirectoryOrCreate

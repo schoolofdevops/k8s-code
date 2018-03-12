@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       tier: back
-      app: redis
+      role: redis
   minReadySeconds: 10
   template:
     metadata:
@@ -16,6 +16,7 @@ spec:
         app: redis
         role: redis
         tier: back
+        version: latest
     spec:
       containers:
       - image: schoolofdevops/redis:latest

@@ -16,6 +16,7 @@ spec:
         app: postgres
         role: db
         tier: back
+        version: "9.4"
     spec:
       containers:
       - image: postgres:9.4
