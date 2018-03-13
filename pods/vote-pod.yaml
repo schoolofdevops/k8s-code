@@ -1,4 +1,18 @@
-apiVersion:
-kind:
+apiVersion: v1
+kind: Pod
 metadata:
+  name: vote 
+  labels: 
+    app: python
+    role: vote 
+    version: v1 
 spec:
+  containers: 
+    - name: app
+      image: schoolofdevops/vote:v1
+      ports: 
+        - containerPort: 80 
+          protocol: TCP
+
+
+

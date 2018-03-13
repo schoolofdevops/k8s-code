@@ -1,12 +1,31 @@
-apiVersion: extensions/v1beta1
-kind: xxxx
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: xxxx
-  namespace: xxx
+  name: worker
+  namespace: instavote
 spec:
-  replicas: xxx
-  selector:
-    xxxx [add selectors here]
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  revisionHistoryLimit: 4
+  paused: false
   minReadySeconds: 20
+  selector:
+    matchLabels:
+      role: worker
+    matchExpressions:
+      - {key: version, operator: In, values: [v1, v2, v3, latest]}
   template:
-    xxxx [add pod template here]
+    metadata:
+      name: worker
+      labels:
+        app: java
+        role: worker
+        version: latest
+    spec:
+      containers:
+        - name: worker
+          image: schoolofdevops/vote-worker:latest
