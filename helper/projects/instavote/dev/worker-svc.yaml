@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: xxxx
+metadata:
+  labels:
+    role: xxxx
+    tier: xxx
+  name: xx
+  namespace: xx
+spec:
+  selector:
+    xxx [add selectors block]
+  ports:
+    xxx [complete this  block ]

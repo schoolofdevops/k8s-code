@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: results 
+  labels: 
+    role: results
+spec:
+  selector: 
+    role: results
+  ports: 
+    - port: 81 
+      targetPort: 80 
+      nodePort: 30001
+  type: NodePort 
+  externalIPs: 
+    - 128.199.86.28
+    - 128.199.86.98
+
+
