@@ -53,7 +53,7 @@ spec:
                 - DAC_READ_SEARCH
                 - SYS_RESOURCE
           args:
-            - "-provisioner=mogambo.org/nfs"
+            - "-provisioner=instavote/nfs"
           env:
             - name: POD_IP
               valueFrom:

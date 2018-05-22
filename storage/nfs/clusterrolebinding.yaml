@@ -2,11 +2,11 @@ kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: run-nfs-provisioner
-  namespace: mogambo
+  namespace: instavote
 subjects:
   - kind: ServiceAccount
     name: nfs-provisioner
-    namespace: mogambo
+    namespace: instavote
 roleRef:
   kind: ClusterRole
   name: nfs-provisioner-runner
