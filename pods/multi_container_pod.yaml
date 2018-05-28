@@ -3,23 +3,26 @@ kind: Pod
 metadata:
   name: web
   labels:
+    tier: front
     app: nginx
     role: ui
-    tier: front
 spec:
   containers:
     - name: nginx
       image: nginx:stable-alpine
       ports:
         - containerPort: 80
+          protocol: TCP
       volumeMounts:
-      - name: data
-        mountPath: /var/www/html-sample-app
+        - name: data
+          mountPath: /var/www/html-sample-app
+
     - name: sync
-      image: schoolofdevops/synch
+      image: schoolofdevops/sync:v2
       volumeMounts:
-      - name: data
-        mountPath: /var/www/html-sample-app
+        - name: data
+          mountPath: /var/www/app
+
   volumes:
-  - name: data
-    emptyDir: {}
+    - name: data
+      emptyDir: {}

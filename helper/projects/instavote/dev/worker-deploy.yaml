@@ -10,11 +10,14 @@ spec:
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 1
+  revisionHistoryLimit: 4
+  paused: false
   minReadySeconds: 20
-  xxx
-  xxx
   selector:
-    xxx
+    matchLabels:
+      role: worker
+    matchExpressions:
+      - {key: version, operator: In, values: [v1, v2, v3, latest]}
   template:
     metadata:
       name: worker
@@ -24,4 +27,5 @@ spec:
         version: latest
     spec:
       containers:
-      - xxx
+        - name: worker
+          image: schoolofdevops/vote-worker:latest
