@@ -3,7 +3,7 @@ apiVersion: v1
 metadata:
   name: cataloguedb-claim
   annotations:
-    volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
+    volume.beta.kubernetes.io/storage-class: "example-nfs"
 spec:
   accessModes:
     - ReadWriteMany
