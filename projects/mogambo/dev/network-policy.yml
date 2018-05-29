@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: frontend-network-policy
+  namespace: mogambo
+spec:
+  podSelector:
+    matchLabels:
+      app: catalogue-db
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - ipBlock: 
+        cidr: 10.233.64.0/18
+        except: 
+        - 10.233.75.11/32
+    - namespaceSelector:
+        matchLabels:
+          project: test
+    - podSelector:
+        matchLabels:
+          app: catalogue
+    ports:
+    - protocol: TCP
+      port: 80
+  egress:
+  - to:
+    - ipBlock:
+        cidr: 172.17.0.0/16
+    ports:
+    - protocol: TCP
+      port: 3306
+
