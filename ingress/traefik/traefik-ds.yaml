@@ -46,6 +46,8 @@ apiVersion: v1
 metadata:
   name: traefik-ingress-service
   namespace: kube-system
+  labels:
+    k8s-app: traefik-ingress-lb
 spec:
   selector:
     k8s-app: traefik-ingress-lb
