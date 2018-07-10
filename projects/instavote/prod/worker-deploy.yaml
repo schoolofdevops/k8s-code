@@ -11,8 +11,6 @@ spec:
       maxSurge: 1
       maxUnavailable: 1
   minReadySeconds: 20
-  selector:
-    role: worker
   template:
     metadata:
       name: worker
