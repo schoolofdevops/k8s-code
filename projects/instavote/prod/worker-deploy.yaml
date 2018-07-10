@@ -5,6 +5,9 @@ metadata:
   namespace: instavote
 spec:
   replicas: 2
+  selector:
+    matchLabels:
+      role: worker
   strategy:
     type: RollingUpdate
     rollingUpdate:
