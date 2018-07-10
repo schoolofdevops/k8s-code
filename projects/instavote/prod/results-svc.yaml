@@ -1,11 +1,15 @@
----
 apiVersion: v1
 kind: Service
 metadata:
-  name: results 
-  labels: 
-    role: results
+  name: result
+  namespace: instavote
+  labels:
+    role: result
 spec:
-  xxx
-
-
+  selector:
+    role: result
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30100
+  type: NodePort
