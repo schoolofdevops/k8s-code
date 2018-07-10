@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: vote
+  namespace: instavote
 spec:
   strategy:
     type: RollingUpdate
