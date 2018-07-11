@@ -11,7 +11,7 @@ spec:
       maxUnavailable: 1
   revisionHistoryLimit: 4
   paused: false
-  replicas: 2
+  replicas: 4
   minReadySeconds: 40
   selector:
     matchLabels:
