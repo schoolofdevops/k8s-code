@@ -12,7 +12,7 @@ spec:
   revisionHistoryLimit: 4
   paused: false
   replicas: 2
-  minReadySeconds: 20
+  minReadySeconds: 40
   selector:
     matchLabels:
       role: vote
@@ -22,11 +22,11 @@ spec:
       labels:
         app: python
         role: vote
-        version: v2
+        version: v1
     spec:
       containers:
         - name: app
-          image: schoolofdevops/vote:movies
+          image: schoolofdevops/vote:v1
           ports:
             - containerPort: 80
               protocol: TCP
