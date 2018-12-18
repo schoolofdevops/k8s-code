@@ -113,7 +113,7 @@ persistence:
   # existingClaim:
 
 adminUser: admin
-adminPassword: strongpassword
+adminPassword: password
 
 ## Use an alternate scheduler, e.g. "stork".
 ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
@@ -184,6 +184,18 @@ dashboardProviders:
 
 dashboards:
   default: 
+    cluster-summary: 
+      gnetId: 8685
+      revision: 1
+      datasource: Prometheus
+    apps:
+      gnetId: 9270
+      revision: 1
+      datasource: Prometheus
+    coredns:
+      gnetId: 7279
+      revision: 1
+      datasource: Prometheus
     kube-dash:
       gnetId: 6663
       revision: 1
