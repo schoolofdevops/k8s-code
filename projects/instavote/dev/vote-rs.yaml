@@ -1,4 +1,28 @@
-apiVersion: 
-kind: Pod
+apiVersion: xxx
+kind: xxx
 metadata:
+  xxx 
 spec:
+  xxx 
+  template: 
+    metadata:
+      name: vote 
+      labels: 
+        app: python 
+        role: vote 
+        version: v1 
+    spec:
+      containers: 
+        - name: app 
+          image: schoolofdevops/vote:v1 
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "50m"
+            limits: 
+              memory: "128Mi"
+              cpu: "250m"
+
+
+
+
