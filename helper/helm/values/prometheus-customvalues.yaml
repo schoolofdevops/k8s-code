@@ -26,7 +26,7 @@ serviceAccounts:
 alertmanager:
   ## If false, alertmanager will not be installed
   ##
-  enabled: false
+  enabled: true
 
   ## alertmanager container name
   ##
@@ -67,6 +67,17 @@ alertmanager:
   ##
   configMapOverrideName: ""
 
+  ## The name of a secret in the same kubernetes namespace which contains the Alertmanager config
+  ## Defining configFromSecret will cause templates/alertmanager-configmap.yaml
+  ## to NOT generate a ConfigMap resource
+  ##
+  configFromSecret: ""
+
+  ## The configuration file name to be loaded to alertmanager
+  ## Must match the key within configuration loaded from ConfigMap/Secret
+  ##
+  configFileName: alertmanager.yml
+
   ingress:
     ## If true, alertmanager Ingress will be created
     ##
@@ -75,7 +86,7 @@ alertmanager:
     ## alertmanager Ingress annotations
     ##
     annotations: {}
-    #   kubernetes.io/ingress.class: nginx
+    #  kubernetes.io/ingress.class: traefik
     #   kubernetes.io/tls-acme: 'true'
 
     ## alertmanager Ingress additional labels
@@ -161,7 +172,7 @@ alertmanager:
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
     ##
-    # storageClass: "-"
+    storageClass: "nfs"
 
     ## Subdirectory of alertmanager data Persistent Volume to mount
     ## Useful if the volume's root directory is not empty
@@ -229,7 +240,7 @@ alertmanager:
     loadBalancerSourceRanges: []
     servicePort: 80
     # nodePort: 30000
-    type: ClusterIP
+    type: NodePort
 
 ## Monitors ConfigMap changes and POSTs to a URL
 ## Ref: https://github.com/jimmidyson/configmap-reload
@@ -304,7 +315,7 @@ kubeStateMetrics:
   ##
   image:
     repository: quay.io/coreos/kube-state-metrics
-    tag: v1.4.0
+    tag: v1.5.0
     pullPolicy: IfNotPresent
 
   ## kube-state-metrics priorityClassName
@@ -418,7 +429,7 @@ nodeExporter:
   ## Custom Update Strategy
   ##
   updateStrategy:
-    type: OnDelete
+    type: RollingUpdate
 
   ## Additional node-exporter container arguments
   ##
@@ -506,7 +517,7 @@ server:
   ##
   image:
     repository: prom/prometheus
-    tag: v2.5.0
+    tag: v2.6.1
     pullPolicy: IfNotPresent
 
   ## prometheus server priorityClassName
@@ -575,12 +586,12 @@ server:
   ingress:
     ## If true, Prometheus server Ingress will be created
     ##
-    enabled: false
+    enabled: true
 
     ## Prometheus server Ingress annotations
     ##
-    annotations: {}
-    #   kubernetes.io/ingress.class: nginx
+    annotations: 
+      kubernetes.io/ingress.class: traefik
     #   kubernetes.io/tls-acme: 'true'
 
     ## Prometheus server Ingress additional labels
@@ -590,8 +601,8 @@ server:
     ## Prometheus server Ingress hostnames with optional path
     ## Must be provided if Ingress is enabled
     ##
-    hosts: []
-    #   - prometheus.domain.com
+    hosts: 
+      - prometheus.example.com
     #   - domain.com/prometheus
 
     ## Prometheus server Ingress TLS configuration
@@ -657,7 +668,7 @@ server:
 
     ## Prometheus server data Persistent Volume size
     ##
-    size: 8Gi
+    size: 2Gi
 
     ## Prometheus server data Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
@@ -726,7 +737,7 @@ server:
     loadBalancerIP: ""
     loadBalancerSourceRanges: []
     servicePort: 80
-    type: ClusterIP
+    type: NodePort
 
   ## Prometheus server pod termination grace period
   ##
@@ -835,7 +846,7 @@ pushgateway:
     loadBalancerIP: ""
     loadBalancerSourceRanges: []
     servicePort: 9091
-    type: ClusterIP
+    type: NodePort
 
 ## alertmanager ConfigMap entries
 ##
