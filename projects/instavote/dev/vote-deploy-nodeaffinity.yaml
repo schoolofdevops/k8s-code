@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: vote
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  revisionHistoryLimit: 4
+  replicas: 12
+  minReadySeconds: 20
+  selector:
+    matchLabels:
+      role: vote
+    matchExpressions:
+      - {key: version, operator: In, values: [v1, v2, v3, v4, v5]}
+  template: 
+    metadata:
+      name: vote 
+      labels: 
+        app: python 
+        role: vote 
+        version: v1 
+    spec:
+      containers: 
+        - name: app 
+          image: schoolofdevops/vote:v1 
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "50m"
+            limits: 
+              memory: "128Mi"
+              cpu: "250m"
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: node-role.kubernetes.io/master
+                operator: DoesNotExist
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              preference:
+                matchExpressions:
+                - key: zone
+                  operator: In
+                  values: 
+                    - bbb
+

@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: db
+  namespace: instavote
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: back
+      app: postgres
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        app: postgres
+        role: db
+        tier: back
+        version: "9.4"
+    spec:
+      containers:
+      - image: postgres:9.4
+        imagePullPolicy: Always
+        name: db
+        ports:
+        - containerPort: 5432
+          protocol: TCP
+        volumeMounts:
+        - name: db-vol
+          mountPath: /var/lib/postgresql/data
+      #create a volume with pvc
+      volumes:
+      - name: db-vol
+        persistentVolumeClaim:
+          claimName: db-pvc
+
