@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: redis
+  namespace: instavote
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: back
+      role: redis
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        app: redis
+        role: redis
+        tier: back
+        version: latest
+    spec:
+      containers:
+      - image: schoolofdevops/redis:latest
+        imagePullPolicy: Always
+        name: redis
+        ports:
+        - containerPort: 6379
+          protocol: TCP
+      restartPolicy: Always
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: role
+                operator: In
+                values:
+                - redis
+            topologyKey: "kubernetes.io/hostname"
